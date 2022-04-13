@@ -1,0 +1,28 @@
+{
+	"name": "tweether",
+	"version": "1.0.0",
+	"description": "",
+	"main": "truffle-config.js",
+	"directories": {
+		"test": "test"
+	},
+	"scripts": {
+		"dev": "next client",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Pianist038801/Tweether.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Pianist038801/Tweether/issues"
+	},
+	"homepage": "https://github.com/Pianist038801/Tweether#readme",
+	"dependencies": {
+		"next": "^12.1.5",
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0"
+	}
+}
