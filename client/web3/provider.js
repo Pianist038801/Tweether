@@ -10,7 +10,8 @@ const provider = () => {
 	}
 };
 
-export const eth = new Web3(provider()).eth;
+export const web3Obj = new Web3(provider());
+export const eth = web3Obj.eth;
 
 export const getInstance = (artifact) => {
 	const contractObj = contract(artifact);
