@@ -6,7 +6,6 @@ import Logotype from "../icons/logotype.svg";
 
 export default class Header extends React.Component {
 	render() {
-		console.log(Logotype);
 		return (
 			<header>
 				<Center>

@@ -4,8 +4,22 @@ import { getTweetInfo, createTweet } from "../web3/tweets";
 import { Page, Center } from "../components/Layout";
 import Button from "../components/Button";
 import MetaMaskIcon from "../icons/metamask.svg";
+import Modal from "../components/Modal";
+import RegistrationForm from "../components/RegistrationForm";
 
 export default class IndexPage extends React.Component {
+	state = {
+		showRegisterModal: false,
+	};
+
+	toggleRegisterModal = async () => {
+		const { showRegisterModal } = this.state;
+
+		this.setState({
+			showRegisterModal: !showRegisterModal,
+		});
+	};
+
 	logUser = async () => {
 		const userInfo = await getUserInfo(1);
 		console.log(userInfo);
@@ -27,6 +41,7 @@ export default class IndexPage extends React.Component {
 	};
 
 	render() {
+		const { showRegisterModal } = this.state;
 		return (
 			<Page>
 				<Center>
@@ -39,6 +54,7 @@ export default class IndexPage extends React.Component {
 							style={{
 								paddingLeft: 64,
 							}}
+							onClick={this.toggleRegisterModal}
 						>
 							<img {...MetaMaskIcon} />
 							Create your account
@@ -52,6 +68,12 @@ export default class IndexPage extends React.Component {
 						</div>
 					</div>
 				</Center>
+
+				{showRegisterModal && (
+					<Modal onClose={this.toggleRegisterModal}>
+						<RegistrationForm />
+					</Modal>
+				)}
 
 				<style jsx global>{`
 					html,

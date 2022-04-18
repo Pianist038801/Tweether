@@ -6,7 +6,6 @@ import UserController from "./artifacts/UserController.json";
 export const getUserInfo = async (userId) => {
 	const storage = await getInstance(UserStorage);
 	const { id, username } = await storage.profiles.call(userId);
-	console.log({ d: web3Obj.utils.toAscii(username) });
 	return {
 		id: parseInt(id),
 		username: web3Obj.utils.toAscii(username).replace(/\u0000/g, ""),
