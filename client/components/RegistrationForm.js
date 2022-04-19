@@ -1,5 +1,7 @@
 import React from "react";
 import Button from "./Button";
+import { createUser } from "../web3/users";
+import { web3Obj } from "../web3/provider";
 
 const Input = ({ title, value, onChange }) => (
 	<div>
@@ -53,6 +55,34 @@ export default class RegistrationForm extends React.Component {
 		newState[fieldName] = e.target.value;
 
 		this.setState(newState);
+	};
+
+	createUser = async (e) => {
+		e.preventDefault();
+
+		// Some quick validation checks
+		for (let key in this.state) {
+			if (!this.state[key]) {
+				return alert(`You must fill in your ${key}!`);
+			}
+		}
+
+		const { firstName, lastName, username, bio, gravatarEmail } = this.state;
+
+		try {
+			// Open the MetaMask modal:
+			await createUser(
+				web3Obj.utils.fromAscii(username),
+				web3Obj.utils.fromAscii(firstName),
+				web3Obj.utils.fromAscii(lastName),
+				bio,
+				gravatarEmail
+			);
+
+			alert("Your user has been created!");
+		} catch (err) {
+			alert(`Sorry, we couldn't create your user: ${err}`);
+		}
 	};
 
 	render() {

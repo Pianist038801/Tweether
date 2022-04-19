@@ -12,14 +12,14 @@ export const getUserInfo = async (userId) => {
 	};
 };
 
-export const createUser = async (username) => {
-	const controller = await getInstance(UserController);
-
+export const createUser = async (...params) => {
 	try {
 		await ethereum.enable();
+
+		const controller = await getInstance(UserController);
 		const addresses = await eth.getAccounts();
 
-		const result = await controller.createUser(web3Obj.utils.fromAscii(username), {
+		const result = await controller.createUser(...params, {
 			from: addresses[0],
 		});
 

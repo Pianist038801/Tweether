@@ -8,7 +8,7 @@
 	},
 	"scripts": {
 		"dev": "npm run artifacts && next client",
-		"artifacts": "cp -r ./build/contracts/ ./client/web3/artifacts",
+		"artifacts": "truffle migrate --reset && cp -r ./build/contracts/ ./client/web3/artifacts",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
