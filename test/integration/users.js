@@ -4,25 +4,36 @@ const utils = require("../utils");
 const { assertVMException } = utils;
 
 contract("users", () => {
+	it("can create user with controller", async () => {
+		const controller = await UserController.deployed();
+
+		const tx = await controller.createUser(
+			web3.utils.fromAscii("tristan"),
+			web3.utils.fromAscii("Tristan"),
+			web3.utils.fromAscii("Edwards"),
+			"I like building stuff",
+			"example@example.com"
+		);
+
+		assert.isOk(tx);
+	});
+
 	it("can't create user without controller", async () => {
 		const storage = await UserStorage.deployed();
 
 		try {
-			const username = web3.utils.fromAscii("tristan");
-			await storage.createUser(username);
+			const tx = await storage.createUser(
+				0x0,
+				"tristan",
+				"Tristan",
+				"Edwards",
+				"I like building stuff",
+				"example@example.com"
+			);
 			assert.fail();
 		} catch (err) {
 			assertVMException(err);
 		}
-	});
-
-	it("can create user with controller", async () => {
-		const controller = await UserController.deployed();
-
-		const username = web3.utils.fromAscii("tristan");
-		const tx = await controller.createUser(username);
-
-		assert.isOk(tx);
 	});
 
 	it("can get user", async () => {

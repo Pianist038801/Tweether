@@ -15,7 +15,14 @@ contract TestUserStorage {
   function testCreateFirstUser() public {
     uint _expectedId = 1;
 
-    Assert.equal(userStorage.createUser("tristan"), _expectedId, "Should create user with ID 1");
+    Assert.equal(userStorage.createUser(
+      address(0),
+      "tristan",
+      "Tristan",
+      "Edwards",
+      "I like building stuff",
+      "example@example.com"
+    ), _expectedId, "Should create user with ID 1");
   }
 
 }
