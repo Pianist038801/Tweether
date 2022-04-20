@@ -22,6 +22,7 @@
 	},
 	"homepage": "https://github.com/Pianist038801/Tweether#readme",
 	"dependencies": {
+		"gravatar-url": "^4.0.1",
 		"next": "^12.1.5",
 		"react": "^18.0.0",
 		"react-dom": "^18.0.0",
